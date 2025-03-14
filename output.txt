@@ -1,0 +1,20 @@
+Longueur du chemin : 5
+Coût total du chemin : 4.25
+Chemin :
+The Beatles (musical_groups_established_in_1960)
+Roy Orbison (20th_century_american_singers)
+Robin Gibb (20th_century_english_singers;21st_century_english_singers)
+Westlife (musical_groups_established_in_1998)
+Mika (singer) (21st_century_english_singers)
+Kendji Girac (21st_century_french_singers)
+--------------------------
+Longueur du chemin : 6
+Coût total du chemin : 2.3402777777777777
+Chemin :
+The Beatles (musical_groups_established_in_1960)
+Paul McCartney (20th_century_english_singers;21st_century_english_singers)
+Kanye West (21st_century_american_rappers;21st_century_american_singers)
+Nicki Minaj (21st_century_american_rappers)
+Ariana Grande (21st_century_american_singers)
+Mika (singer) (21st_century_english_singers)
+Kendji Girac (21st_century_french_singers)
