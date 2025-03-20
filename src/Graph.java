@@ -4,11 +4,15 @@ import java.io.IOException;
 import java.util.*;
 
 public class Graph {
+    private Map<Integer, Artist> artists = new HashMap<>();
+    private List<Mention> mentions = new ArrayList<>();
+    private Map<Integer, List<Integer>> adjacencyList = new HashMap<>();
+    private Map<String, Integer> mentionWeights = new HashMap<>();
+
     private Map<String, Integer> artistNameToId = new HashMap<>();
     private Map<Integer, String> artistIdToName = new HashMap<>();
-    private Map<Integer, List<Integer>> adjacencyList = new HashMap<>();
     private Map<Integer, String> artistCategories = new HashMap<>();
-    private Map<String, Integer> mentionWeights = new HashMap<>();
+
 
     public Graph(String artistsFile, String mentionsFile) {
         loadArtists(artistsFile);
@@ -25,9 +29,8 @@ public class Graph {
                     String name = parts[1];
                     String category = parts.length > 2 ? parts[2] : "";
 
-                    artistNameToId.put(name, id);
-                    artistIdToName.put(id, name);
-                    artistCategories.put(id, category);
+                    Artist artist = new Artist(id, name, category);
+                    artists.put(id, artist);
                     adjacencyList.put(id, new ArrayList<>());
                 }
             }
@@ -46,12 +49,18 @@ public class Graph {
                     int targetId = Integer.parseInt(parts[1]);
                     int weight = Integer.parseInt(parts[2]);
 
-                    // Créer un graphe dirigé (seulement de source vers cible)
+                   /* Créer un graphe dirigé (seulement de source vers cible)
                     adjacencyList.get(sourceId).add(targetId);
 
-                    // Stocker le poids de la mention
+                    Stocker le poids de la mention
                     String edgeKey = sourceId + "-" + targetId;
-                    mentionWeights.put(edgeKey, weight);
+                    mentionWeights.put(edgeKey, weight); */
+
+                    Mention mention = new Mention(sourceId, targetId, weight);
+                    mentions.add(mention);
+
+                    adjacencyList.get(sourceId).add(targetId);
+                    mentionWeights.put(sourceId + "-" + targetId, weight);
                 }
             }
         } catch (IOException e) {
