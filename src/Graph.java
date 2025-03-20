@@ -29,15 +29,22 @@ public class Graph {
                     String name = parts[1];
                     String category = parts.length > 2 ? parts[2] : "";
 
+                    // Ajouter les artistes dans les structures de données
                     Artist artist = new Artist(id, name, category);
                     artists.put(id, artist);
                     adjacencyList.put(id, new ArrayList<>());
+
+                    // 🔥 Correction : Remplir les maps nécessaires
+                    artistNameToId.put(name, id);
+                    artistIdToName.put(id, name);
+                    artistCategories.put(id, category);
                 }
             }
         } catch (IOException e) {
             System.err.println("Erreur lors de la lecture du fichier des artistes: " + e.getMessage());
         }
     }
+
 
     private void loadMentions(String filename) {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -77,16 +84,17 @@ public class Graph {
             return;
         }
 
-        // Utiliser BFS pour trouver le chemin le plus court
+        // Utilisation de BFS pour trouver le plus court chemin
         Map<Integer, Integer> parent = new HashMap<>();
         Queue<Integer> queue = new LinkedList<>();
         Set<Integer> visited = new HashSet<>();
 
         queue.add(sourceId);
         visited.add(sourceId);
+        parent.put(sourceId, null);
 
         boolean found = false;
-        while (!queue.isEmpty() && !found) {
+        while (!queue.isEmpty()) {
             int current = queue.poll();
 
             if (current == targetId) {
@@ -103,44 +111,34 @@ public class Graph {
             }
         }
 
-        if (found) {
-            // Reconstruire le chemin
-            List<Integer> path = new ArrayList<>();
-            int current = targetId;
-
-            while (current != sourceId) {
-                path.add(current);
-                current = parent.get(current);
-            }
-            path.add(sourceId);
-
-            // Afficher le chemin dans l'ordre
-            Collections.reverse(path);
-
-            System.out.println("Longueur du chemin : " + (path.size() - 1));
-
-            // Calculer le coût total
-            double coutTotal = 0.0;
-            for (int i = 0; i < path.size() - 1; i++) {
-                int from = path.get(i);
-                int to = path.get(i + 1);
-                String edgeKey = from + "-" + to;
-                int weight = mentionWeights.getOrDefault(edgeKey, 0);
-                if (weight > 0) {
-                    coutTotal += 1.0 / weight;
-                }
-            }
-            System.out.println("Coût total du chemin : " + coutTotal);
-
-            System.out.println("Chemin :");
-            for (int i = 0; i < path.size(); i++) {
-                int artistId = path.get(i);
-                String artistName = artistIdToName.get(artistId);
-                String category = artistCategories.get(artistId);
-                System.out.println(artistName + " (" + category + ")");
-            }
-        } else {
+        if (!found) {
             System.out.println("Aucun chemin trouvé entre " + sourceArtist + " et " + targetArtist);
+            return;
+        }
+
+        // Reconstruire le chemin
+        List<Integer> path = new ArrayList<>();
+        for (Integer at = targetId; at != null; at = parent.get(at)) {
+            path.add(at);
+        }
+        Collections.reverse(path);
+
+        // Afficher le chemin et calculer le coût
+        System.out.println("Longueur du chemin : " + (path.size() - 1));
+
+        double coutTotal = 0.0;
+        for (int i = 0; i < path.size() - 1; i++) {
+            int from = path.get(i);
+            int to = path.get(i + 1);
+            String edgeKey = from + "-" + to;
+            int weight = mentionWeights.getOrDefault(edgeKey, 1); // Éviter la division par 0
+            coutTotal += 1.0 / weight;
+        }
+        System.out.println("Coût total du chemin : " + coutTotal);
+
+        System.out.println("Chemin :");
+        for (int id : path) {
+            System.out.println(artistIdToName.get(id) + " (" + artistCategories.get(id) + ")");
         }
     }
 
