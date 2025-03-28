@@ -4,40 +4,52 @@ import java.io.IOException;
 import java.util.*;
 
 public class Graph {
-    private Map<Integer, Artist> artists;
-    private Map<String, Edge> edges;
-    private Map<Integer, List<Integer>> adjacencyList;
 
-    private Map<String, Integer> artistNameToId;
-    private Map<Integer, String> artistIdToName;
 
-    public Graph(String artistsFile, String mentionsFile) {
-        artists = new HashMap<>();
-        edges = new HashMap<>();
-        adjacencyList = new HashMap<>();
-        artistNameToId = new HashMap<>();
-        artistIdToName = new HashMap<>();
+    private Map<Integer, Artiste> artistes;
+    private Map<String, Mention> mentions;
+    private Map<Integer, List<Integer>> listeAdjacence;
 
-        loadArtists(artistsFile);
-        loadMentions(mentionsFile);
+    private Map<String, Integer> nomArtisteVersId;
+    private Map<Integer, String> idArtisteVersNom;
+
+    public Graph(String fichierArtistes,String fichierMentions) {
+
+        artistes= new HashMap<>();
+        mentions= new HashMap<>();
+        listeAdjacence= new HashMap<>();
+        nomArtisteVersId =new HashMap<>();
+        idArtisteVersNom =new HashMap<>();
+
+        chargerArtistes(fichierArtistes);
+        chargerMentions(fichierMentions );
+
     }
 
-    private void loadArtists(String filename) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",", 3);
-                if (parts.length >= 2) {
-                    int id = Integer.parseInt(parts[0]);
-                    String name = parts[1];
-                    String categories = parts.length > 2 ? parts[2] : "";
 
-                    Artist artist = new Artist(id, name, categories);
-                    artists.put(id, artist);
-                    adjacencyList.put(id, new ArrayList<>());
+    private void chargerArtistes(String fichierNom) {
 
-                    artistNameToId.put(name, id);
-                    artistIdToName.put(id, name);
+        try (BufferedReader br = new BufferedReader(new FileReader(fichierNom))) {
+
+            String ligne;
+
+            while ((ligne = br.readLine()) != null) {
+                String[] parties=ligne.split(",", 3);
+                if (parties.length >= 2) {
+
+                    int id=Integer.parseInt(parties[0] );
+                    String name =parties[1];
+                    String categories =parties.length > 2 ? parties[2] : "" ;
+
+                    Artiste artiste = new Artiste(id, name, categories);
+                    artistes.put(id,artiste) ;
+                    listeAdjacence.put( id, new ArrayList<>());
+
+
+                    nomArtisteVersId.put(name,id);
+                    idArtisteVersNom.put(id,name);
+
+
                 }
             }
         } catch (IOException e) {
@@ -45,177 +57,252 @@ public class Graph {
         }
     }
 
-    private void loadMentions(String filename) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length >= 3) {
-                    int sourceId = Integer.parseInt(parts[0]);
-                    int targetId = Integer.parseInt(parts[1]);
-                    int weight = Integer.parseInt(parts[2]);
+    private void chargerMentions(String fichierNom) {
 
-                    Edge edge = new Edge(sourceId, targetId, weight);
-                    edges.put(edge.getKey(), edge);
+        try (BufferedReader br = new BufferedReader(new FileReader(fichierNom))){
 
-                    adjacencyList.get(sourceId).add(targetId);
+            String ligne;
+
+            while ((ligne = br.readLine()) != null) {
+                String[]  parties=ligne.split(",");
+                if (parties.length>=3) {
+
+                    int sourceId=Integer.parseInt(parties[0] );
+                    int cibleId =Integer.parseInt(parties[1]);
+                    int poids = Integer.parseInt(parties[2]);
+
+                    Mention mention = new Mention(sourceId,cibleId,poids);
+
+                    mentions.put(mention.getClef(), mention) ;
+                    listeAdjacence.get(sourceId).add(cibleId) ;
+
+
+
                 }
             }
         } catch (IOException e) {
-            System.err.println("Erreur lors de la lecture du fichier des mentions: " + e.getMessage());
+            System.err.println("Erreur lors de la lecture du fichier des artistes: " + e.getMessage());
         }
     }
 
-    public void trouverCheminLePlusCourt(String sourceArtist, String targetArtist) {
-        Integer sourceId = artistNameToId.get(sourceArtist);
-        Integer targetId = artistNameToId.get(targetArtist);
+    public void trouverCheminLePlusCourt(String artisteSource, String artisteCible) {
 
-        if (sourceId == null || targetId == null) {
-            System.out.println("Un des artistes n'existe pas dans le graphe.");
+
+        Integer sourceId = nomArtisteVersId.get(artisteSource);
+
+        Integer cibleId = nomArtisteVersId.get(artisteCible);
+
+        if (sourceId ==null || cibleId== null) {
+
+            System.out.println("Un des artistes n'est pas trouvé dans le graphe.");
+
             return;
+
         }
 
-        // Utilisation de BFS pour trouver le plus court chemin
-        Map<Integer, Integer> parent = new HashMap<>();
-        Queue<Integer> queue = new LinkedList<>();
-        Set<Integer> visited = new HashSet<>();
 
-        queue.add(sourceId);
-        visited.add(sourceId);
+        Map<Integer, Integer> parent =new HashMap<>();
+        Queue<Integer> file =new LinkedList<>();
+        Set<Integer> visite = new HashSet<>();
+
+
+        file.add(sourceId);
+        visite.add(sourceId);
         parent.put(sourceId, null);
 
-        boolean found = false;
-        while (!queue.isEmpty()) {
-            int current = queue.poll();
 
-            if (current == targetId) {
-                found = true;
+        boolean trouve=false;
+        while (!file.isEmpty()) {
+
+            int courant =file.poll();
+
+            if (courant== cibleId) {
+
+                trouve=true ;
                 break;
+
+
             }
 
-            for (int neighbor : adjacencyList.getOrDefault(current, Collections.emptyList())) {
-                if (!visited.contains(neighbor)) {
-                    visited.add(neighbor);
-                    parent.put(neighbor, current);
-                    queue.add(neighbor);
+            for (int voisin:  listeAdjacence.getOrDefault(courant,  Collections.emptyList())) {
+
+                if (!visite.contains(voisin) ) {
+
+                    visite.add(voisin);
+                    parent.put(voisin,courant) ;
+                    file.add(voisin);
+
+
                 }
             }
+
+
         }
 
-        if (!found) {
-            System.out.println("Aucun chemin trouvé entre " + sourceArtist + " et " + targetArtist);
+        if (!trouve) {
+            System.out.println("Aucun chemin trouvé entre "  + artisteSource + " et " + artisteCible );
+
             return;
         }
 
-        // Reconstruire et afficher le chemin
-        afficherChemin(sourceId, targetId, parent);
+
+
+        afficherChemin(cibleId,parent);
+
     }
 
-    private void afficherChemin(int sourceId, int targetId, Map<Integer, Integer> parent) {
-        // Reconstruire le chemin
-        List<Integer> path = new ArrayList<>();
-        for (Integer at = targetId; at != null; at = parent.get(at)) {
-            path.add(at);
-        }
-        Collections.reverse(path);
+    private void afficherChemin(int cibleId, Map<Integer, Integer> parent) {
 
-        // Afficher le chemin et calculer le coût
-        System.out.println("Longueur du chemin : " + (path.size() - 1));
+
+        List<Integer> chemin =new ArrayList<>();
+        for (Integer actuel =cibleId; actuel!= null; actuel=parent.get(actuel)) {
+
+            chemin.add(actuel);
+
+        }
+        Collections.reverse(chemin);
+
+
+        System.out.println("Longueur du chemin : " + (chemin.size() - 1));
+
+
 
         double coutTotal = 0.0;
-        for (int i = 0; i < path.size() - 1; i++) {
-            int from = path.get(i);
-            int to = path.get(i + 1);
-            Edge edge = edges.get(from + "-" + to);
-            coutTotal += edge.getCost();
+
+        for (int i = 0; i < chemin.size() - 1; i++) {
+
+            int depuis =chemin.get(i);
+            int vers=chemin.get(i + 1);
+            Mention mention=  mentions.get(depuis + "-" +  vers);
+            coutTotal += mention.getCout();
+
+
         }
+
         System.out.println("Coût total du chemin : " + coutTotal);
 
+
         System.out.println("Chemin :");
-        for (int id : path) {
-            Artist artist = artists.get(id);
-            System.out.println(artist);
+
+        for (int id :chemin) {
+            Artiste artiste = artistes.get(id);
+
+            System.out.println(artiste);
+
         }
+
     }
 
-    public void trouverCheminMaxMentions(String sourceArtist, String targetArtist) {
-        Integer sourceId = artistNameToId.get(sourceArtist);
-        Integer targetId = artistNameToId.get(targetArtist);
 
-        if (sourceId == null || targetId == null) {
-            System.out.println("Un des artistes n'existe pas dans le graphe.");
+    public void trouverCheminMaxMentions(String artisteSource,String artisteCible) {
+
+
+        Integer sourceId = nomArtisteVersId.get(artisteSource);
+        Integer cibleId = nomArtisteVersId.get(artisteCible);
+
+
+        if (sourceId == null || cibleId == null) {
+
+            System.out.println("Un des artistes n'est pas trouvé  dans le graphe.");
+
             return;
         }
 
-        // Initialisation de Dijkstra
+
+
         Map<Integer, Double> distance = new HashMap<>();
         Map<Integer, Integer> parent = new HashMap<>();
-        PriorityQueue<NodeWithCost> priorityQueue = new PriorityQueue<>(
-                Comparator.comparingDouble(NodeWithCost::getCost));
-        Set<Integer> visited = new HashSet<>();
+        PriorityQueue<MentionAvecCout> priorityQueue = new PriorityQueue<>(
+                Comparator.comparingDouble(MentionAvecCout::getCout));
+        Set<Integer> visites= new HashSet<>();
 
-        // Initialiser les distances à l'infini sauf pour la source
-        for (int id : artists.keySet()) {
-            distance.put(id, Double.MAX_VALUE);
+
+
+        for (int id: artistes.keySet()) {
+
+            distance.put(id,Double.MAX_VALUE);
         }
         distance.put(sourceId, 0.0);
-        priorityQueue.add(new NodeWithCost(sourceId, 0.0));
+
+        priorityQueue.add(new MentionAvecCout(sourceId,0.0));
+
 
         while (!priorityQueue.isEmpty()) {
-            NodeWithCost current = priorityQueue.poll();
-            int currentId = current.getId();
 
-            if (currentId == targetId) {
-                break; // Nous avons trouvé le chemin le plus court vers la cible
+            MentionAvecCout courant= priorityQueue.poll();
+            int courantId=courant.getId();
+
+            if (courantId ==cibleId) {
+
+                break;
+
             }
 
-            if (visited.contains(currentId)) {
-                continue; // Éviter de traiter deux fois le même nœud
+            if (visites.contains(courantId)) {
+
+                continue;
+
             }
 
-            visited.add(currentId);
 
-            // Pour chaque voisin du nœud actuel
-            for (int neighborId : adjacencyList.getOrDefault(currentId, Collections.emptyList())) {
-                Edge edge = edges.get(currentId + "-" + neighborId);
-                if (edge != null) {
-                    double newDistance = distance.get(currentId) + edge.getCost();
+            visites.add(courantId);
 
-                    // Si nous avons trouvé un chemin plus court
-                    if (newDistance < distance.get(neighborId)) {
-                        distance.put(neighborId, newDistance);
-                        parent.put(neighborId, currentId);
-                        priorityQueue.add(new NodeWithCost(neighborId, newDistance));
+            for (int IdVoisin :listeAdjacence.getOrDefault(courantId,Collections.emptyList())) {
+
+                Mention mention = mentions.get(courantId +"-" +IdVoisin);
+
+                if (mention != null) {
+
+                    double newDistance= distance.get(courantId) +mention.getCout();
+
+                    if (newDistance <distance.get(IdVoisin)) {
+
+                        distance.put(IdVoisin, newDistance);
+                        parent.put(IdVoisin, courantId) ;
+                        priorityQueue.add(new MentionAvecCout(IdVoisin,  newDistance));
+
                     }
+
                 }
             }
+
+
         }
 
-        if (!parent.containsKey(targetId)) {
-            System.out.println("Aucun chemin trouvé entre " + sourceArtist + " et " + targetArtist);
+        if (!parent.containsKey(cibleId)) {
+
+            System.out.println("Aucun chemin trouvé entre "+artisteSource+" et " +artisteCible);
             return;
+
         }
 
-        // Reconstruire et afficher le chemin
-        afficherChemin(sourceId, targetId, parent);
+
+        afficherChemin( cibleId, parent);
     }
 
-    // Classe auxiliaire pour Dijkstra
-    private static class NodeWithCost {
-        private int id;
-        private double cost;
 
-        public NodeWithCost(int id, double cost) {
+    private static class MentionAvecCout {
+
+        private int id;
+        private double cout;
+
+        public MentionAvecCout(int id,double cout) {
+
             this.id = id;
-            this.cost = cost;
+            this.cout= cout;
+
         }
 
         public int getId() {
             return id;
         }
 
-        public double getCost() {
-            return cost;
+
+        public double getCout() {
+            return cout;
         }
+
     }
+
+
 }

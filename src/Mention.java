@@ -1,15 +1,28 @@
 public class Mention {
-    private int sourceId;
-    private int targetId;
-    private int weight;
 
-    public Mention(int sourceId, int targetId, int weight) {
+
+    private int sourceId;
+    private int cibleId;
+    private int poids;
+
+    public Mention(int sourceId, int cibleId, int poids) {
         this.sourceId = sourceId;
-        this.targetId = targetId;
-        this.weight = weight;
+        this.cibleId =cibleId;
+        this.poids= poids;
+
     }
 
-    public int getSourceId() { return sourceId; }
-    public int getTargetId() { return targetId; }
-    public int getWeight() { return weight; }
+
+    public String getClef() {
+        return sourceId +  "-"  +cibleId;
+    }
+
+    public double getCout() {
+        return 1.0 / poids;
+    }
+
+    @Override
+    public String toString() {
+        return sourceId +" -> " +cibleId + " (weight: " +poids + ")";
+    }
 }

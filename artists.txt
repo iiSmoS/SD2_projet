@@ -204,7 +204,7 @@
 204,3rd Alley,musical_groups_established_in_2004
 205,3rd Avenue (band),musical_groups_established_in_2000
 206,3rd Bass,musical_groups_established_in_1987
-207,3rd Edge,musical_groups_established_in_2001
+207,3rd Mention,musical_groups_established_in_2001
 208,3rd Faze,musical_groups_established_in_2000
 209,3rd Root,musical_groups_established_in_1996
 210,3rd Storee,musical_groups_established_in_1997
@@ -2317,7 +2317,7 @@
 2317,Arbat-Opera,musical_groups_established_in_1999
 2318,Arbee Stidham,20th_century_american_singers
 2319,Arbovirus (band),musical_groups_established_in_2002
-2320,Arc in Round,musical_groups_established_in_2006
+2320,Mention in Round,musical_groups_established_in_2006
 2321,Arcade Fire,musical_groups_established_in_2001
 2322,Arcades (band),musical_groups_established_in_2018
 2323,Arcadia (band),musical_groups_established_in_1985
@@ -2520,7 +2520,7 @@
 2520,Artificial Language,musical_groups_established_in_2015
 2521,Artificial Waves,musical_groups_established_in_2013
 2522,Artillery (band),musical_groups_established_in_1982
-2523,Artist vs. Poet,musical_groups_established_in_2007
+2523,Artiste vs. Poet,musical_groups_established_in_2007
 2524,Artistas Reunidos,musical_groups_established_in_1997
 2525,Artists' Vocal Ensemble,musical_groups_established_in_2004
 2526,Artrosis,musical_groups_established_in_1995
@@ -8442,7 +8442,7 @@
 8442,Cute Is What We Aim For,musical_groups_established_in_2005
 8443,Cutthroat Boyz,musical_groups_established_in_2012
 8444,Cutting Crew,musical_groups_established_in_1985
-8445,Cutting Edge (band),musical_groups_established_in_1981
+8445,Cutting Mention (band),musical_groups_established_in_1981
 8446,Cutting Jade,musical_groups_established_in_1998
 8447,Cutumay Camones,musical_groups_established_in_1982
 8448,Cxloe,21st_century_australian_singers
@@ -8743,7 +8743,7 @@
 8743,Damnocracy,musical_groups_established_in_2006
 8744,Damon & Naomi,musical_groups_established_in_1991
 8745,Damon Albarn,20th_century_english_singers;21st_century_english_singers
-8746,Damon Edge,20th_century_american_singers
+8746,Damon Mention,20th_century_american_singers
 8747,Damon Elliott,21st_century_american_singers
 8748,Damon McMahon,21st_century_american_singers
 8749,Damond Jiniya,21st_century_american_singers
@@ -9301,7 +9301,7 @@
 9301,Deacon Blue,musical_groups_established_in_1985
 9302,Deacon the Villain,21st_century_american_rappers
 9303,Dead & Company,musical_groups_established_in_2015
-9304,Dead Artist Syndrome,musical_groups_established_in_1990
+9304,Dead Artiste Syndrome,musical_groups_established_in_1990
 9305,Dead Boots,musical_groups_established_in_2006
 9306,Dead Boys,musical_groups_established_in_1976
 9307,Dead Brain Cells,musical_groups_established_in_1986
@@ -10813,7 +10813,7 @@
 10813,Dust Brothers,musical_groups_established_in_1985
 10814,Dustdevils,musical_groups_established_in_1984
 10815,Dusted (Canadian band),musical_groups_established_in_2012
-10816,Dustin Edge,21st_century_american_singers
+10816,Dustin Mention,21st_century_american_singers
 10817,Dustin Kensrue,21st_century_american_singers
 10818,Dustin Lanker,21st_century_american_singers
 10819,Dustin Lynch,21st_century_american_singers
@@ -11094,13 +11094,13 @@
 11094,Eden's Bridge,musical_groups_established_in_1993
 11095,Eden's Crush,musical_groups_established_in_2000
 11096,Edenbridge (band),musical_groups_established_in_1998
-11097,Edens Edge,musical_groups_established_in_2006
+11097,Edens Mention,musical_groups_established_in_2006
 11098,Edgar Allen Floe,21st_century_american_rappers
 11099,Edgar Broughton Band,musical_groups_established_in_1968
 11100,Edgar Jones (musician),21st_century_english_singers
-11101,Edge of Paradise,musical_groups_established_in_2011
-11102,Edge of Sanity,musical_groups_established_in_1989
-11103,Edge of Spirit,musical_groups_established_in_1997
+11101,Mention of Paradise,musical_groups_established_in_2011
+11102,Mention of Sanity,musical_groups_established_in_1989
+11103,Mention of Spirit,musical_groups_established_in_1997
 11104,Edgelarks,musical_groups_established_in_2010
 11105,Edgewater (band),musical_groups_established_in_1997
 11106,Edguy,musical_groups_established_in_1992
@@ -11803,7 +11803,7 @@
 11803,Erica Packer,21st_century_australian_singers
 11804,Erica Rivera,21st_century_american_singers
 11805,Erich-Weinert-Ensemble,musical_groups_established_in_1950
-11806,Erick Arc Elliott,21st_century_american_rappers
+11806,Erick Mention Elliott,21st_century_american_rappers
 11807,Erick Baker,20th_century_american_singers;21st_century_american_singers
 11808,Erick Sermon,20th_century_american_rappers;21st_century_american_rappers
 11809,Ericka Hunter,21st_century_canadian_singers
@@ -15295,7 +15295,7 @@
 15295,Heaven Shall Burn,musical_groups_established_in_1996
 15296,Heaven the Axe,musical_groups_established_in_2007
 15297,Heaven's Basement,musical_groups_established_in_2008
-15298,Heaven's Edge,musical_groups_established_in_1987
+15298,Heaven's Mention,musical_groups_established_in_1987
 15299,Heaven's Force,musical_groups_established_in_1983
 15300,Heavenly (British band),musical_groups_established_in_1989
 15301,Heavenly (French band),musical_groups_established_in_1994
@@ -16985,7 +16985,7 @@
 16985,Jacky Clark Chisholm,20th_century_american_singers;21st_century_american_singers
 16986,Jackyl,musical_groups_established_in_1991
 16987,Jacno,20th_century_french_singers
-16988,Jacob Artist,21st_century_american_singers
+16988,Jacob Artiste,21st_century_american_singers
 16989,Jacob Bannon,21st_century_american_singers
 16990,Jacob Butler,21st_century_australian_singers
 16991,Jacob Golden,21st_century_american_singers
@@ -17052,8 +17052,8 @@
 17052,Jag Panzer,musical_groups_established_in_1981
 17053,Jag Star,musical_groups_established_in_1998
 17054,Jaga Jazzist,musical_groups_established_in_1994
-17055,Jagged Edge (American group),musical_groups_established_in_1995
-17056,Jagged Edge (British band),musical_groups_established_in_1987
+17055,Jagged Mention (American group),musical_groups_established_in_1995
+17056,Jagged Mention (British band),musical_groups_established_in_1987
 17057,Jaguar (band),musical_groups_established_in_1979
 17058,Jaguar Wright,21st_century_american_singers
 17059,Jagúar (band),musical_groups_established_in_1998
@@ -17288,7 +17288,7 @@
 17288,Jank (band),musical_groups_established_in_2015
 17289,Jann Arden,20th_century_canadian_singers;21st_century_canadian_singers
 17290,Jannabi (band),musical_groups_established_in_2012
-17291,Janne Da Arc,musical_groups_established_in_1991
+17291,Janne Da Mention,musical_groups_established_in_1991
 17292,Jannez,musical_groups_established_in_1976
 17293,January Jones (singer),20th_century_american_singers
 17294,Janus (American band),musical_groups_established_in_1998
@@ -18032,7 +18032,7 @@
 18032,Joan Tetzel,20th_century_american_singers
 18033,Joan Weber,20th_century_american_singers
 18034,Joan Whitney Kramer,20th_century_american_singers
-18035,Joan of Arc (band),musical_groups_established_in_1995
+18035,Joan of Mention (band),musical_groups_established_in_1995
 18036,Joana Marte,musical_groups_established_in_2015
 18037,Joana and the Wolf,musical_groups_established_in_2005
 18038,Joanna Burt,21st_century_canadian_singers
@@ -20242,7 +20242,7 @@
 20242,L Devine,21st_century_english_singers
 20243,L'Acéphale,musical_groups_established_in_2003
 20244,L'Affaire Louis' Trio,musical_groups_established_in_1982
-20245,L'Arc-en-Ciel,musical_groups_established_in_1991
+20245,L'Mention-en-Ciel,musical_groups_established_in_1991
 20246,L'Arpeggiata,musical_groups_established_in_2000
 20247,L'Assassins,musical_groups_established_in_2010
 20248,L'Impératrice,musical_groups_established_in_2012
@@ -30664,7 +30664,7 @@
 30664,Sa-Deuce,musical_groups_established_in_1995
 30665,Sa-Roc,21st_century_american_rappers;21st_century_american_singers
 30666,Saafir,21st_century_american_rappers
-30667,Sab the Artist,21st_century_american_rappers
+30667,Sab the Artiste,21st_century_american_rappers
 30668,Saba (rapper),21st_century_american_rappers
 30669,Sabac Red,21st_century_american_rappers
 30670,Sabaton (band),musical_groups_established_in_1999
@@ -35088,7 +35088,7 @@
 35088,The Art Attacks,musical_groups_established_in_1977
 35089,The Artaud Beats,musical_groups_established_in_2009
 35090,The Artificial Heart,musical_groups_established_in_2005
-35091,The Artist Life,musical_groups_established_in_2005
+35091,The Artiste Life,musical_groups_established_in_2005
 35092,The Artwoods,musical_groups_established_in_1964
 35093,The Asbestos,musical_groups_established_in_2004
 35094,The Ascendicate,musical_groups_established_in_2008;musical_groups_established_in_1999
@@ -41512,7 +41512,7 @@
 41512,West Australian Opera,musical_groups_established_in_1967
 41513,West Australian Youth Jazz Orchestra,musical_groups_established_in_1983
 41514,West Bay Opera,musical_groups_established_in_1955
-41515,West Edge Opera,musical_groups_established_in_1979
+41515,West Mention Opera,musical_groups_established_in_1979
 41516,West End Girls (Canadian band),musical_groups_established_in_1990
 41517,West Indian Girl,musical_groups_established_in_2004
 41518,West Java Syndicate,musical_groups_established_in_2010
